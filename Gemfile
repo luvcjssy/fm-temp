@@ -20,6 +20,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
   gem 'faker'
+  gem 'capybara', '>= 2.15'
+  gem 'webdrivers'
 end
 
 group :development do
