@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe AuthenticationsController, type: :controller do
   describe "POST #create" do
-    let(:action) {  }
-
     context 'register new user' do
       context 'with valid data' do
         it 'return root path and successfully register user' do
