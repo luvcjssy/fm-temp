@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'videos#index'
+  resources :videos, except: :show
+
+  post 'authenticate', to: 'authentications#create'
+  delete 'logout', to: 'authentications#destroy'
 end
