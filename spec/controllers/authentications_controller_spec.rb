@@ -17,21 +17,18 @@ describe AuthenticationsController, type: :controller do
       context 'with invalid data' do
         it 'return unprocessable_entity with username is not present' do
           post :create, params: { username: '', password: 'password' }
-          expect(response.status).to eq 422
           expect(session[:user_id]).to eq nil
           expect(flash[:error]).to include "Username can't be blank"
         end
 
         it 'return unprocessable_entity with password is not present' do
           post :create, params: { username: Faker::Internet.username, password: '' }
-          expect(response.status).to eq 422
           expect(session[:user_id]).to eq nil
           expect(flash[:error]).to include "Password can't be blank"
         end
 
         it 'return unprocessable_entity with password is less than 8 characters' do
           post :create, params: { username: Faker::Internet.username, password: '' }
-          expect(response.status).to eq 422
           expect(session[:user_id]).to eq nil
           expect(flash[:error]).to include "Password is too short (minimum is 8 characters)"
         end
@@ -49,7 +46,6 @@ describe AuthenticationsController, type: :controller do
 
       it 'return unprocessable_entity with wrong password' do
         post :create, params: { username: user.username, password: 'wrong_password' }
-        expect(response.status).to eq 422
         expect(session[:user_id]).to eq nil
         expect(flash[:error]).to eq "Invalid email or password"
       end

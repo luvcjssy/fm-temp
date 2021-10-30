@@ -8,16 +8,14 @@ class AuthenticationsController < ApplicationController
         session[:user_id] = user.id
         redirect_to root_path, notice: 'Successfully created user'
       else
-        flash.now[:error] = user.errors.full_messages
-        render 'videos/index', status: :unprocessable_entity
+        redirect_to root_path, flash: { error: user.errors.full_messages }
       end
     else
       if user.present? && user.authenticate(params[:password])
         session[:user_id] = user.id
         redirect_to root_path, notice: 'Logged in successfully'
       else
-        flash.now[:error] = 'Invalid email or password'
-        render 'videos/index', status: :unprocessable_entity
+        redirect_to root_path, flash: { error: 'Invalid email or password' }
       end
     end
   end
