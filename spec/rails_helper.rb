@@ -25,4 +25,5 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
+  Capybara.default_driver = :selenium_chrome
 end
